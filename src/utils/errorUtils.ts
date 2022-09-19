@@ -9,6 +9,26 @@ export function errorHandler(error: string | object): IAppError {
     message: "",
   };
   switch (error) {
+    case "invalid_token":
+      response.code = 401;
+      response.message = "Invalid token";
+      break;
+    case "invalid_category":
+      response.code = 404;
+      response.message = "This category does not exist";
+      break;
+    case "invalid_discipline":
+      response.code = 404;
+      response.message = "This discipline does not exist";
+      break;
+    case "invalid_teacher":
+      response.code = 404;
+      response.message = "This teacher is not registered in the database";
+      break;
+    case "invalid_teacher_discipline":
+      response.code = 404;
+      response.message = "This teacher does not teach this discipline";
+      break;
     case "invalid_email":
       response.code = 409;
       response.message = "This email is already in use";

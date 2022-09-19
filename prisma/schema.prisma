@@ -20,11 +20,13 @@ model Categories {
 }
 
 model Tests {
-  id         Int        @id @default(autoincrement())
-  name       String
-  pdfUrl     String
-  categoryId Int
-  category   Categories @relation(fields: [categoryId], references: [id])
+  id                  Int                 @id @default(autoincrement())
+  name                String
+  pdfUrl              String
+  categoryId          Int
+  category            Categories          @relation(fields: [categoryId], references: [id])
+  teachersDisciplines TeachersDisciplines @relation(fields: [teacherDisciplineId], references: [id])
+  teacherDisciplineId Int
 }
 
 model Disciplines {
@@ -53,6 +55,7 @@ model TeachersDisciplines {
   disciplineId Int
   discipline   Disciplines @relation(fields: [disciplineId], references: [id])
   teacher      Teachers    @relation(fields: [teacherId], references: [id])
+  Tests        Tests[]
 
   @@unique([teacherId, disciplineId])
 }

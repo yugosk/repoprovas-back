@@ -6,7 +6,7 @@ export async function validateToken(
   res: Response,
   next: NextFunction
 ) {
-  const { authorization } = req.headers;
+  const authorization = req.headers["authorization"];
   const token = authorization?.replace("Bearer ", "");
 
   if (!token) {
@@ -15,7 +15,6 @@ export async function validateToken(
 
   try {
     const user = await validate(token);
-    console.log(user);
     next();
   } catch (err: ErrorEvent | any) {
     throw "invalid_token";

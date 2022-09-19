@@ -1,4 +1,3 @@
-import { response } from "express";
 import supertest from "supertest";
 import app from "../src/app";
 import client from "../src/dbStrategy/postgre";
@@ -45,7 +44,7 @@ describe("POST /login", () => {
     await supertest(app).post("/sign-up").send(newUser);
     const result = await supertest(app).post("/login").send(loginCredentials);
     expect(result.status).toBe(200);
-    expect(result.body).not.toBeNull();
+    expect(result.text).not.toBeNull();
   });
 
   it("Should return code 404 if an invalid email is used", async () => {
