@@ -91,7 +91,7 @@ describe("POST /tests", () => {
     const result = await supertest(app)
       .post("/tests")
       .set({ Authorization: `Bearer ${token}` })
-      .send({ ...newTest, disclipine: "HTML e CSS", teacher: "Bruna Hamori" });
+      .send({ ...newTest, discipline: "HTML e CSS", teacher: "Bruna Hamori" });
 
     expect(result.status).toBe(409);
   });
