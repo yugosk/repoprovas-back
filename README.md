@@ -11,7 +11,7 @@ This project is the back-end of a server that lets students share and see tests 
 
 ---
 
-## :computer: Tecnologies
+## :computer: Technologies
 
 - REST APIs
 - JWTs
@@ -21,7 +21,7 @@ This project is the back-end of a server that lets students share and see tests 
 
 ---
 
-## :rocket: Rotas
+## :rocket: Routes
 
 ```yml
 POST /sign-up
