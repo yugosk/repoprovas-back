@@ -11,3 +11,21 @@ export async function postTest(req: Request, res: Response) {
     throw err;
   }
 }
+
+export async function getTests(req: Request, res: Response) {
+  try {
+    const tests = await testServices.getTests();
+    res.send(tests);
+  } catch (err: ErrorEvent | any) {
+    throw err;
+  }
+}
+
+export async function getTestsByTeachers(req: Request, res: Response) {
+  try {
+    const tests = await testServices.getTestsByTeachers();
+    res.send(tests);
+  } catch (err: ErrorEvent | any) {
+    throw err;
+  }
+}

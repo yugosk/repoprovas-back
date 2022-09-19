@@ -18,7 +18,7 @@ const loginCredentials = {
 };
 
 const newTest = {
-  name: "test insertion of teste",
+  name: "test insertion of test",
   pdfUrl: "https://www.africau.edu/images/default/sample.pdf",
   category: "Projeto",
   discipline: "HTML e CSS",
@@ -76,7 +76,6 @@ describe("POST /tests", () => {
 
   it("Should return status code 404, in case an invalid discipline is sent", async () => {
     const token = await getToken();
-    console.log(token);
 
     const result = await supertest(app)
       .post("/tests")
@@ -84,6 +83,44 @@ describe("POST /tests", () => {
       .send({ ...newTest, discipline: "test" });
 
     expect(result.status).toBe(404);
+  });
+});
+
+describe("GET /tests/terms", () => {
+  it("Should return status code 200", async () => {
+    const token = await getToken();
+
+    const result = await supertest(app)
+      .get("/tests/terms")
+      .set({ Authorization: `Bearer ${token}` })
+      .send();
+
+    expect(result.status).toBe(200);
+  });
+
+  it("Should return status code 401, in case token is not sent", async () => {
+    const result = await supertest(app).get("/tests/terms").send();
+
+    expect(result.status).toBe(401);
+  });
+});
+
+describe("GET /tests/teachers", () => {
+  it("Should return status code 200", async () => {
+    const token = await getToken();
+
+    const result = await supertest(app)
+      .get("/tests/teachers")
+      .set({ Authorization: `Bearer ${token}` })
+      .send();
+
+    expect(result.status).toBe(200);
+  });
+
+  it("Should return status code 401, in case token is not sent", async () => {
+    const result = await supertest(app).get("/tests/teachers").send();
+
+    expect(result.status).toBe(401);
   });
 });
 

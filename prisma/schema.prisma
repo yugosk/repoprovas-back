@@ -14,9 +14,11 @@ model Users {
 }
 
 model Categories {
-  id    Int     @id @default(autoincrement())
-  name  String  @unique
-  Tests Tests[]
+  id          Int           @id @default(autoincrement())
+  name        String        @unique
+  Tests       Tests[]
+  Disciplines Disciplines[]
+  Teacher     Teachers[]
 }
 
 model Tests {
@@ -35,6 +37,8 @@ model Disciplines {
   termId              Int
   term                Terms                 @relation(fields: [termId], references: [id])
   TeachersDisciplines TeachersDisciplines[]
+  Categories          Categories[]
+  Teachers            Teachers[]
 }
 
 model Terms {
@@ -47,6 +51,8 @@ model Teachers {
   id                  Int                   @id @default(autoincrement())
   name                String                @unique
   TeachersDisciplines TeachersDisciplines[]
+  Disciplines         Disciplines[]
+  Categories          Categories[]
 }
 
 model TeachersDisciplines {

@@ -23,7 +23,7 @@ export async function newTest(test: testRepository.TestInsertData) {
     );
 
     if (!teacherDisciplineId) {
-      return "invalid_teacher_discipline";
+      throw "invalid_teacher_discipline";
     }
 
     const categoryId = await findCategoryByName(category);
@@ -38,6 +38,24 @@ export async function newTest(test: testRepository.TestInsertData) {
       categoryId,
       teacherDisciplineId,
     });
+  } catch (err: ErrorEvent | any) {
+    throw err;
+  }
+}
+
+export async function getTests() {
+  try {
+    const tests = await testRepository.read();
+    return tests;
+  } catch (err: ErrorEvent | any) {
+    throw err;
+  }
+}
+
+export async function getTestsByTeachers() {
+  try {
+    const tests = await testRepository.readByTeachers();
+    return tests;
   } catch (err: ErrorEvent | any) {
     throw err;
   }
