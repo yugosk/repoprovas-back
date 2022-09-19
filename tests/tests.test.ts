@@ -84,6 +84,17 @@ describe("POST /tests", () => {
 
     expect(result.status).toBe(404);
   });
+
+  it("Should return status code 409, in case teacher and discipline do not match", async () => {
+    const token = await getToken();
+
+    const result = await supertest(app)
+      .post("/tests")
+      .set({ Authorization: `Bearer ${token}` })
+      .send({ ...newTest, disclipine: "HTML e CSS", teacher: "Bruna Hamori" });
+
+    expect(result.status).toBe(409);
+  });
 });
 
 describe("GET /tests/terms", () => {

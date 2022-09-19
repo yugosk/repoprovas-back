@@ -26,7 +26,7 @@ export function errorHandler(error: string | object): IAppError {
       response.message = "This teacher is not registered in the database";
       break;
     case "invalid_teacher_discipline":
-      response.code = 404;
+      response.code = 409;
       response.message = "This teacher does not teach this discipline";
       break;
     case "invalid_email":
